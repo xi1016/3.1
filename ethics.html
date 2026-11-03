@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ethics &amp; Privacy Reflection | StudyFlow</title>
+  <meta name="description" content="A reflection on the ethical and privacy considerations of the StudyFlow study task management application: data minimisation, local storage, accessibility and responsible design." />
+  <meta name="author" content="Shuhan Chen" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="StudyFlow home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+        </span>
+        <span class="brand-text">StudyFlow</span>
+      </a>
+
+      <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="tasks.html">Study Tasks</a></li>
+          <li><a href="blog.html">Troubleshooting Blog</a></li>
+          <li><a href="ethics.html">Ethics &amp; Privacy</a></li>
+        </ul>
+      </nav>
+
+      <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head" aria-labelledby="ethicsTitle">
+      <div class="container">
+        <p class="section-kicker">Ethics &amp; privacy reflection</p>
+        <h1 class="page-title" id="ethicsTitle">What does it mean to handle a student's data responsibly?</h1>
+        <p class="page-lede">StudyFlow stores what a student is working on and when it is due. This page reflects on the ethical and privacy decisions behind that simple fact.</p>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container container--narrow">
+
+        <h2 class="sub-title">Privacy: collecting the minimum, keeping it local</h2>
+        <p class="muted-text">
+          A task list is surprisingly personal. It reveals which courses a student is enrolled in, how far behind
+          they are, and what they are worried about. Because of this, the most important design decision in
+          StudyFlow was a negative one: <strong>the application collects no personal data and sends it nowhere</strong>.
+          Tasks are saved in the browser's <code>localStorage</code> on the user's own device, there is no server,
+          no account system backed by a database, and no analytics or tracking of any kind.
+        </p>
+        <p class="muted-text">
+          This is an application of the principle of <strong>data minimisation</strong> — only collect what the
+          product strictly needs. StudyFlow needs task titles, course details and due dates to function; it does
+          not need a real name, email address, phone number or student ID, so it never asks for them. Had this
+          been a server-backed app, each of those fields would have become a liability: something to store
+          securely, to protect from breaches, and to justify.
+        </p>
+
+        <h2 class="sub-title">The demonstration login — an honest limitation</h2>
+        <p class="muted-text">
+          The task manager is gated by a basic username and password login, as required by the specification.
+          It is important to be honest about what this is: a <strong>client-side demonstration</strong>, not real
+          security. The credentials are checked in JavaScript, which means anyone can read them by viewing the
+          source. A production system would verify credentials on a server, hash passwords with a slow algorithm
+          such as bcrypt, lock accounts after repeated failures, and use HTTPS to protect credentials in transit.
+          Documenting that gap — rather than pretending the demo login "secures" anything — is itself an ethical
+          obligation to the marker and to anyone reading this code.
+        </p>
+
+        <h2 class="sub-title">Ethical design: honesty, fairness and inclusion</h2>
+        <p class="muted-text">
+          Beyond privacy, three ethical commitments shaped the interface. First, <strong>honesty</strong>: the
+          countdown and overdue styling tell the user the truth about their deadlines instead of gamifying
+          false urgency — there are no manipulative "streaks" designed to induce guilt. Second, <strong>fairness</strong>:
+          the validation rules reject invalid input with clear, specific messages rather than silently guessing what
+          the user meant, because silent "corrections" of someone's data are a small act of disrespect. Third,
+          <strong>inclusion</strong>: the pages use semantic landmarks, labelled form fields, visible focus states,
+          keyboard-operable dialogs and colour contrast that meets WCAG AA, so the app remains usable by students
+          who navigate with a keyboard or screen reader.
+        </p>
+
+        <h2 class="sub-title">Accessibility as an ethical issue</h2>
+        <p class="muted-text">
+          During testing I navigated the whole app with the keyboard alone, and it changed how I think about
+          "extra" features. A modal that traps focus and can be closed with <kbd>Escape</kbd> is not polish —
+          for some students it is the difference between using the app and being locked out of it. Similarly,
+          colour never carries meaning on its own: overdue tasks are red <em>and</em> labelled "Overdue", so
+          colour-blind users receive the same information. Accessibility failures exclude people; treating it
+          as a core requirement, not an afterthought, is the ethical baseline for any interface.
+        </p>
+
+        <h2 class="sub-title">If StudyFlow grew up</h2>
+        <p class="muted-text">
+          Scaling this app would create real obligations: syncing tasks to a server would require
+          encryption in transit and at rest, a published privacy policy, compliance with laws such as the
+          Australian Privacy Principles and, for broader use, the GDPR; account deletion would need to
+          <em>actually</em> delete data; and third-party libraries would need auditing before being trusted
+          with user data. The local-first design of this assignment defers all of those risks rather than
+          solving them — and recognising when a design decision avoids a problem entirely is, I have learned,
+          as important as solving it.
+        </p>
+
+        <div class="takeaways" aria-label="Key takeaways">
+          <h2>Key takeaways</h2>
+          <ul>
+            <li>Collect the minimum: every stored field is a permanent responsibility.</li>
+            <li>Local-first design protects users by default — no server, no breach surface.</li>
+            <li>Be honest about limitations: a demo login is not security, and saying so matters.</li>
+            <li>Accessibility is an ethical requirement, not an optional enhancement.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="clock-bar">
+    <div class="container">
+      <span aria-hidden="true">🕒</span> Current date and time:
+      <time id="clock">Loading…</time>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">© <span id="year">2026</span> Shuhan Chen · StudyFlow — Assignment 3.1, built with HTML, CSS &amp; JavaScript.</p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="tasks.html">Study Tasks</a>
+        <a href="blog.html">Troubleshooting Blog</a>
+        <a href="ethics.html">Ethics &amp; Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

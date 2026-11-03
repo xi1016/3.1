@@ -1,0 +1,12 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories
+.vscode/
+.idea/
+
+# Local task data (never commit browser storage exports)
+*.local.json
+studyflow-backup.json
