@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="A stack of books topped with a graduation cap">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f0ecfa"/>
+      <stop offset="1" stop-color="#e0d8f3"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg3)"/>
+  <circle cx="140" cy="120" r="52" fill="#cfc2ec" opacity="0.6"/>
+  <circle cx="690" cy="480" r="60" fill="#cfc2ec" opacity="0.5"/>
+
+  <!-- books, bottom to top -->
+  <g>
+    <rect x="240" y="470" width="320" height="44" rx="8" fill="#7a6cc9"/>
+    <rect x="252" y="482" width="12" height="20" rx="4" fill="#ffffff" opacity="0.35"/>
+    <rect x="262" y="420" width="300" height="44" rx="8" fill="#f0a5a5"/>
+    <rect x="274" y="432" width="12" height="20" rx="4" fill="#ffffff" opacity="0.45"/>
+    <rect x="284" y="370" width="270" height="44" rx="8" fill="#5fa8d3"/>
+    <rect x="296" y="382" width="12" height="20" rx="4" fill="#ffffff" opacity="0.4"/>
+    <rect x="304" y="320" width="240" height="44" rx="8" fill="#65c290"/>
+    <rect x="316" y="332" width="12" height="20" rx="4" fill="#ffffff" opacity="0.45"/>
+  </g>
+
+  <!-- graduation cap -->
+  <g>
+    <path d="M424 216L620 288 424 360 228 288z" fill="#3b3454"/>
+    <path d="M330 316v56c0 22 42 40 94 40s94-18 94-40v-56l-94 34z" fill="#4a4270"/>
+    <path d="M560 300v76" stroke="#f4b860" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="560" cy="386" r="13" fill="#f4b860"/>
+    <path d="M573 386h46" stroke="#f4b860" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- sparkles -->
+  <g fill="#f4b860">
+    <path d="M250 210l6 16 16 6-16 6-6 16-6-16-16-6 16-6z"/>
+    <path d="M610 190l5 12 12 5-12 5-5 12-5-12-12-5 12-5z"/>
+    <path d="M560 130l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/>
+  </g>
+</svg>

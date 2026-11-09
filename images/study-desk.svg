@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="A tidy study desk with a laptop, a coffee cup and a small plant">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eaf1fb"/>
+      <stop offset="1" stop-color="#d5e6f7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg1)"/>
+  <circle cx="660" cy="110" r="70" fill="#bcd7f5" opacity="0.6"/>
+  <circle cx="120" cy="90" r="40" fill="#bcd7f5" opacity="0.5"/>
+
+  <!-- desk -->
+  <rect x="70" y="430" width="660" height="26" rx="13" fill="#c98d5a"/>
+  <rect x="110" y="456" width="24" height="120" fill="#a06b3f"/>
+  <rect x="666" y="456" width="24" height="120" fill="#a06b3f"/>
+
+  <!-- laptop -->
+  <g>
+    <rect x="300" y="250" width="220" height="150" rx="12" fill="#3b4a5f"/>
+    <rect x="312" y="262" width="196" height="126" rx="6" fill="#7fc4f7"/>
+    <path d="M370 320h90M370 342h60" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+    <path d="M280 400h260l14 30H266z" fill="#4d5d74"/>
+  </g>
+
+  <!-- coffee cup -->
+  <g>
+    <rect x="580" y="370" width="60" height="56" rx="10" fill="#ffffff" stroke="#d7e0ec" stroke-width="3"/>
+    <path d="M640 384h14a14 14 0 0 1 0 28h-14" fill="none" stroke="#d7e0ec" stroke-width="6"/>
+    <path d="M592 366c8-8 20-8 28 0" stroke="#b2a0d6" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- plant -->
+  <g>
+    <path d="M170 430h60l-8 0-44 0z" fill="#d98f6a"/>
+    <path d="M168 430h64v-8h-64z" fill="#e8a683"/>
+    <path d="M200 422c-6-26-24-38-40-36 4 20 18 34 40 36z" fill="#4faf7e"/>
+    <path d="M202 422c6-26 24-38 40-36-4 20-18 34-40 36z" fill="#65c290"/>
+    <path d="M200 424V396" stroke="#3d8a63" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- books -->
+  <g>
+    <rect x="560" y="404" width="80" height="26" rx="4" fill="#f0a5a5"/>
+    <rect x="566" y="378" width="70" height="26" rx="4" fill="#a8c8f0"/>
+    <rect x="572" y="352" width="60" height="26" rx="4" fill="#f3d1a0"/>
+  </g>
+
+  <!-- notebook -->
+  <g>
+    <rect x="230" y="402" width="80" height="28" rx="5" fill="#ffffff" stroke="#d7e0ec" stroke-width="3" transform="rotate(-4 270 416)"/>
+    <path d="M244 412h50M244 420h34" stroke="#c3d2e5" stroke-width="4" stroke-linecap="round" transform="rotate(-4 270 416)"/>
+  </g>
+</svg>

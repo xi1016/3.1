@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-label="Task form with due date 13/11/2026 showing the incorrect error message: Due date cannot be in the past">
+  <!-- browser chrome -->
+  <rect width="900" height="420" rx="12" fill="#202124"/>
+  <rect width="900" height="44" rx="12" fill="#292a2d"/>
+  <circle cx="26" cy="22" r="6" fill="#ff5f57"/>
+  <circle cx="46" cy="22" r="6" fill="#febc2e"/>
+  <circle cx="66" cy="22" r="6" fill="#28c840"/>
+  <rect x="96" y="9" width="620" height="26" rx="13" fill="#3c3d42"/>
+  <text x="112" y="27" font-family="Consolas, monospace" font-size="14" fill="#9aa0a6">file:///D:/study-planner/tasks.html — Add a new study task</text>
+  <rect x="760" y="9" width="110" height="26" rx="13" fill="#3c3d42"/>
+  <text x="775" y="27" font-family="Consolas, monospace" font-size="13" fill="#9aa0a6">DevTools ▾</text>
+
+  <!-- page -->
+  <rect x="0" y="44" width="900" height="376" fill="#f4f7fb"/>
+  <text x="60" y="100" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#16222f">Add a new study task</text>
+
+  <!-- form panel -->
+  <rect x="60" y="124" width="780" height="272" rx="14" fill="#ffffff" stroke="#dbe4ef" stroke-width="2"/>
+
+  <text x="88" y="166" font-family="Arial, sans-serif" font-size="13" fill="#16222f" font-weight="bold">Task title *</text>
+  <rect x="88" y="176" width="340" height="34" rx="8" fill="#f4f7fb" stroke="#dbe4ef" stroke-width="1.5"/>
+  <text x="102" y="199" font-family="Arial, sans-serif" font-size="13" fill="#16222f">Revise Week 6 studio notes</text>
+
+  <text x="452" y="166" font-family="Arial, sans-serif" font-size="13" fill="#16222f" font-weight="bold">Course code *</text>
+  <rect x="452" y="176" width="160" height="34" rx="8" fill="#f4f7fb" stroke="#dbe4ef" stroke-width="1.5"/>
+  <text x="466" y="199" font-family="Consolas, monospace" font-size="13" fill="#16222f">INFO1015</text>
+
+  <text x="636" y="166" font-family="Arial, sans-serif" font-size="13" fill="#16222f" font-weight="bold">Due date *</text>
+  <rect x="636" y="176" width="160" height="34" rx="8" fill="#fdeaec" stroke="#d24556" stroke-width="2"/>
+  <text x="650" y="199" font-family="Arial, sans-serif" font-size="13" fill="#16222f">13/11/2026</text>
+
+  <!-- wrong error message -->
+  <text x="636" y="232" font-family="Arial, sans-serif" font-size="12" fill="#d24556" font-weight="bold">✖ Due date cannot be in the past.</text>
+  <text x="88" y="232" font-family="Arial, sans-serif" font-size="12" fill="#8a8a8a">(Today is 13/11/2026 — the date is NOT in the past!)</text>
+
+  <text x="88" y="284" font-family="Arial, sans-serif" font-size="13" fill="#16222f" font-weight="bold">Task description *</text>
+  <rect x="88" y="294" width="708" height="56" rx="8" fill="#f4f7fb" stroke="#dbe4ef" stroke-width="1.5"/>
+  <text x="102" y="318" font-family="Arial, sans-serif" font-size="13" fill="#9aa0a6">Go through the Week 6 studio slides and re-do the exercises…</text>
+
+  <!-- submit disabled-looking -->
+  <rect x="88" y="366" width="130" height="20" rx="6" fill="#d24556" opacity="0"/>
+  <text x="88" y="382" font-family="Arial, sans-serif" font-size="13" fill="#d24556" font-weight="bold">Blocked — task cannot be added</text>
+</svg>
