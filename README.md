@@ -7,8 +7,10 @@ assignments, revision tasks, quizzes and project deadlines at the same time. It 
 handwritten notes and messy spreadsheets with one central, validated, easy-to-use task list.
 
 > **GitHub repository URL (for submission):**
-> `https://github.com/<your-github-classroom-org>/assignment-3-<your-student-id>`
-> *(Replace with the URL of your allocated GitHub Classroom repository before submitting.)*
+> https://github.com/xi1016/3.1
+>
+> **Live site (GitHub Pages):** enable *Settings → Pages → Deploy from branch: main / root*
+> to publish the portfolio at `https://xi1016.github.io/3.1/`.
 
 ---
 

@@ -5,6 +5,11 @@
    ========================================================================== */
 "use strict";
 
+/* ==================================================================
+ * NOTE (Error 1, documented in blog.html): reading localStorage can
+ * return null for a first-time visitor. Always fall back to [] and
+ * wrap JSON.parse in try...catch before calling .map().
+ * ================================================================== */
 (function () {
   var STORAGE_KEY = "studyflow.tasks";
   var SESSION_KEY = "studyflow.session";
@@ -36,10 +41,18 @@
   var confirmDeleteBtn = $("confirmDeleteBtn");
 
   /* ==================================================================
-   * Persistence
+   * Persistence — safe load (see Error 1 in blog.html)
    * ================================================================== */
   function loadTasks() {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY));
+    var loaded;
+    try {
+      var parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      loaded = Array.isArray(parsed) ? parsed : [];
+    } catch (err) {
+      // Corrupted or missing data falls back to an empty list
+      loaded = [];
+    }
+    return loaded;
   }
 
   function saveTasks() {
@@ -118,10 +131,14 @@
     if (inputEl) inputEl.classList.toggle("is-invalid", message !== "");
   }
 
+  /* Date check — compares date-to-date at local midnight.
+     Fixed version of Error 2 (see blog.html): previously a same-day
+     due date was rejected because midnight is always < "now". */
   function isPastDate(dateString) {
-    var due = new Date(dateString);
-    var now = new Date();
-    return due < now;
+    var due = new Date(dateString + "T00:00:00"); // local midnight, explicit
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);                   // compare date-to-date
+    return due < today;                           // only truly past dates
   }
 
   /* Validate the whole task form. Returns true when every field is ok. */

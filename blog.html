@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Plan &amp; Troubleshooting Blog | StudyFlow</title>
+  <meta name="description" content="The three-week sprint plan for StudyFlow, plus documented errors and step-by-step troubleshooting explanations from development." />
+  <meta name="author" content="Shuhan Chen" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="StudyFlow home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+        </span>
+        <span class="brand-text">StudyFlow</span>
+      </a>
+
+      <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="tasks.html">Study Tasks</a></li>
+          <li><a href="blog.html">Troubleshooting Blog</a></li>
+          <li><a href="ethics.html">Ethics &amp; Privacy</a></li>
+        </ul>
+      </nav>
+
+      <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head" aria-labelledby="blogTitle">
+      <div class="container">
+        <p class="section-kicker">Project plan &amp; troubleshooting blog</p>
+        <h1 class="page-title" id="blogTitle">How StudyFlow was planned, built and debugged</h1>
+        <p class="page-lede">A three-week sprint plan, plus two real development errors — documented with timestamps, screenshots, code and explanations.</p>
+      </div>
+    </section>
+
+    <!-- ================= SPRINT PLAN ================= -->
+    <section class="section section-tight" aria-labelledby="planTitle">
+      <div class="container">
+        <h2 class="section-title" id="planTitle">Three-week sprint plan</h2>
+        <p class="muted-text">The project ran across weeks 5–7 of the course (26 October – 15 November 2026), one phase per table row.</p>
+
+        <div class="table-wrap panel">
+          <table class="plan-table">
+            <caption class="visually-hidden">Three week sprint plan showing phases and activities per week</caption>
+            <thead>
+              <tr>
+                <th scope="col">Phase</th>
+                <th scope="col">Week 1<br /><span class="th-note">26 Oct – 1 Nov</span></th>
+                <th scope="col">Week 2<br /><span class="th-note">2 – 8 Nov</span></th>
+                <th scope="col">Week 3<br /><span class="th-note">9 – 15 Nov</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Planning</th>
+                <td>Read the assignment specification and marking scheme; set up the GitHub Classroom repository, folder structure and VS Code workspace; defined the product name (StudyFlow) and scope.</td>
+                <td>Reviewed progress against the plan; refined the task data model (title, course code, course name, due date, description, notes).</td>
+                <td>Final content pass on the home page, blog and ethics reflection; prepared README, licence and the ZIP export for submission.</td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th>
+                <td>Analyse the problem: students juggling concurrent deadlines with informal tools; listed functional requirements (login, CRUD, validation, clock) from the specification.</td>
+                <td>Chose <code>localStorage</code> for persistence and a single-table list view sorted by due date; sketched the login → task manager flow.</td>
+                <td>Checked every requirement against the marking scheme and closed the gaps (image cycler button, confirmation dialog, error messages).</td>
+              </tr>
+              <tr>
+                <th scope="row">Design</th>
+                <td>Paper wireframes for all four pages; picked the typography (Sora + Inter), colour palette and card-based layout.</td>
+                <td>Built the CSS design system: tokens, header, forms, table, modal and responsive breakpoints at 720px / 960px.</td>
+                <td>Polished focus states, hover feedback, mobile layout and print styles.</td>
+              </tr>
+              <tr>
+                <th scope="row">Implementation</th>
+                <td>Hand-coded semantic HTML for all pages: home, tasks, blog, ethics; drew the three SVG study illustrations.</td>
+                <td>Implemented JavaScript: login gate, image cycler, task CRUD with a shared create/edit form, and <code>localStorage</code> persistence.</td>
+                <td>Added input validation (required fields, date rules), the delete confirmation dialog, toast messages and the live clock.</td>
+              </tr>
+              <tr>
+                <th scope="row">Testing &amp; maintenance</th>
+                <td>Smoke-tested page structure and links; validated HTML structure by eye against the semantic checklist.</td>
+                <td>Tested CRUD paths; found and fixed <a href="#error-1">Error&nbsp;1</a> (empty storage crash) and <a href="#error-2">Error&nbsp;2</a> (date comparison bug) — details below.</td>
+                <td>Full regression pass in Chrome, Edge and Firefox; keyboard-only testing; commits pushed to GitHub; ZIP exported from the repository.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ERROR 1 ================= -->
+    <section class="section section-alt" id="error-1" aria-labelledby="error1Title">
+      <div class="container container--narrow">
+        <p class="section-kicker">Error 1 · Task creation &amp; viewing</p>
+        <h2 class="section-title" id="error1Title">The task list crashed on a first visit</h2>
+
+        <div class="error-meta">
+          <p><strong>Date &amp; time encountered:</strong> Wednesday 11 November 2026, 4:12&nbsp;pm</p>
+          <p><strong>Date &amp; time resolved:</strong> Wednesday 11 November 2026, 5:03&nbsp;pm</p>
+        </div>
+
+        <h3 class="sub-title">The error</h3>
+        <p class="muted-text">
+          After clearing the browser's storage to test a "fresh" visitor, the Study Tasks page rendered nothing
+          and the Chrome console showed an uncaught exception. No tasks could be created until the page was reloaded.
+        </p>
+
+        <figure class="shot">
+          <img src="images/shot-error-1.svg" alt="Browser console screenshot showing the error: Uncaught TypeError, tasks.map is not a function, at renderTasks in tasks.js line 54" />
+          <figcaption>Screenshot of the error in the Chrome DevTools console (11 Nov 2026, 4:12 pm).</figcaption>
+        </figure>
+
+        <h3 class="sub-title">Code that caused the issue</h3>
+        <pre class="code-block"><code>function loadTasks() {
+  const tasks = JSON.parse(localStorage.getItem('studyflow.tasks'));
+  renderTasks(tasks);
+}
+
+function renderTasks(tasks) {
+  const rows = tasks.map(function (t) {   // crashes when tasks is null
+    return '&lt;tr&gt;&lt;td&gt;' + t.title + '&lt;/td&gt;&lt;/tr&gt;';
+  });
+  document.getElementById('taskBody').innerHTML = rows.join('');
+}</code></pre>
+
+        <h3 class="sub-title">Corrected solution</h3>
+        <pre class="code-block"><code>function loadTasks() {
+  let tasks;
+  try {
+    const parsed = JSON.parse(localStorage.getItem('studyflow.tasks'));
+    tasks = Array.isArray(parsed) ? parsed : [];
+  } catch (err) {
+    // Corrupted or missing data falls back to an empty list
+    tasks = [];
+  }
+  renderTasks(tasks);
+}</code></pre>
+
+        <figure class="shot">
+          <img src="images/shot-fixed-1.svg" alt="Screenshot of the working application showing the task table rendered with three tasks and the console clear of errors" />
+          <figcaption>Screenshot of the working application after the fix (11 Nov 2026, 5:03 pm).</figcaption>
+        </figure>
+
+        <h3 class="sub-title">What happened, and how it was resolved</h3>
+        <p class="muted-text">
+          <strong>Possible cause.</strong> <code>localStorage.getItem()</code> returns <code>null</code> for a key that has
+          never been written. <code>JSON.parse(null)</code> returns <code>null</code> (it does not throw), so
+          <code>renderTasks()</code> received <code>null</code> and calling <code>.map()</code> on it threw a
+          <code>TypeError</code>. The bug only appeared for first-time visitors or after clearing storage — which is
+          why it was missed during normal testing, where old data always existed.
+        </p>
+        <p class="muted-text">
+          <strong>How it was resolved.</strong> The load function now wraps parsing in <code>try…catch</code> and
+          explicitly checks <code>Array.isArray()</code>, so any missing, empty or corrupted value safely falls back to
+          an empty array <code>[]</code>. The render function can then show the "No tasks yet" empty state instead of crashing.
+        </p>
+        <p class="muted-text">
+          <strong>Resources used.</strong> MDN Web Docs —
+          <a href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem">Storage.getItem()</a>,
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">JSON.parse()</a> and
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray">Array.isArray()</a>;
+          plus a studio discussion about always validating data read from storage.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= ERROR 2 ================= -->
+    <section class="section" id="error-2" aria-labelledby="error2Title">
+      <div class="container container--narrow">
+        <p class="section-kicker">Error 2 · Date validation</p>
+        <h2 class="section-title" id="error2Title">A due date of "today" was wrongly rejected as being in the past</h2>
+
+        <div class="error-meta">
+          <p><strong>Date &amp; time encountered:</strong> Friday 13 November 2026, 7:41&nbsp;pm</p>
+          <p><strong>Date &amp; time resolved:</strong> Friday 13 November 2026, 8:26&nbsp;pm</p>
+        </div>
+
+        <h3 class="sub-title">The error</h3>
+        <p class="muted-text">
+          While testing validation, a task with a due date of <em>today</em> (a valid date — plenty of deadlines are
+          same-day) was rejected with the message <em>"Due date cannot be in the past"</em>, even though the date had not passed.
+        </p>
+
+        <figure class="shot">
+          <img src="images/shot-error-2.svg" alt="Screenshot of the task form showing a due date set to 13/11/2026 with an incorrect red error message saying due date cannot be in the past" />
+          <figcaption>Screenshot of the incorrect validation message (13 Nov 2026, 7:41 pm).</figcaption>
+        </figure>
+
+        <h3 class="sub-title">Code that caused the issue</h3>
+        <pre class="code-block"><code>function isPastDate(dateString) {
+  const due = new Date(dateString);      // parses as midnight, e.g. 2026-11-13T00:00
+  const now = new Date();                // includes the current time, e.g. 19:41
+  return due &lt; now;                      // midnight is ALWAYS before 19:41
+}</code></pre>
+
+        <h3 class="sub-title">Corrected solution</h3>
+        <pre class="code-block"><code>function isPastDate(dateString) {
+  const due = new Date(dateString + 'T00:00:00');  // local midnight, explicit
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);                      // compare date-to-date
+  return due &lt; today;                              // only truly past dates
+}</code></pre>
+
+        <figure class="shot">
+          <img src="images/shot-fixed-2.svg" alt="Screenshot of the working application showing the same due date accepted and a success toast saying task added successfully" />
+          <figcaption>Screenshot of the working application after the fix — the task was accepted (13 Nov 2026, 8:26 pm).</figcaption>
+        </figure>
+
+        <h3 class="sub-title">What happened, and how it was resolved</h3>
+        <p class="muted-text">
+          <strong>Possible cause.</strong> The comparison mixed two different precisions. A date string like
+          <code>"2026-11-13"</code> is parsed as <em>midnight</em> at the start of that day, while
+          <code>new Date()</code> is the exact current moment including hours, minutes and seconds. Midnight is always
+          earlier than any time later that day, so every same-day due date was treated as "in the past".
+        </p>
+        <p class="muted-text">
+          <strong>How it was resolved.</strong> Both values are now normalised to local midnight before comparing:
+          the input date is parsed with an explicit <code>T00:00:00</code>, and the current date is zeroed with
+          <code>setHours(0, 0, 0, 0)</code>. The comparison is now date-to-date, so only genuinely past dates are
+          rejected. Edge cases re-tested: yesterday (rejected), today (accepted), tomorrow (accepted).
+        </p>
+        <p class="muted-text">
+          <strong>Resources used.</strong> MDN Web Docs —
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a> and
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours">Date.prototype.setHours()</a>;
+          the Stack Overflow thread "How to check if a date is in the past" for the midnight-parsing pitfall.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <div class="clock-bar">
+    <div class="container">
+      <span aria-hidden="true">🕒</span> Current date and time:
+      <time id="clock">Loading…</time>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">© <span id="year">2026</span> Shuhan Chen · StudyFlow — Assignment 3.1, built with HTML, CSS &amp; JavaScript.</p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="tasks.html">Study Tasks</a>
+        <a href="blog.html">Troubleshooting Blog</a>
+        <a href="ethics.html">Ethics &amp; Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>
