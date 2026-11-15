@@ -1,200 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>StudyFlow — My Study Task Manager</title>
-  <meta name="description" content="StudyFlow is a study task management web application that helps students create, update, delete and track academic tasks in one organised place." />
-  <meta name="author" content="Shuhan Chen" />
+  <meta name="description" content="Entry point for StudyFlow, a study task management web application. The application pages live in the html/ folder." />
+  <meta http-equiv="refresh" content="0; url=html/index.html" />
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --border: #dbe4ef;
+      --text: #16222f;
+      --muted: #5b6b7e;
+      --accent: #2f7ff0;
+      --accent-dark: #1f63c9;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 2rem 1.25rem;
+      background:
+        radial-gradient(40rem 26rem at 80% -10%, #e5effe, transparent 60%),
+        radial-gradient(32rem 22rem at 0% 10%, #e0f5f2, transparent 55%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+    }
+
+    main {
+      width: 100%;
+      max-width: 30rem;
+      padding: 2.25rem 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 18px 44px rgba(23, 44, 74, 0.1);
+      text-align: center;
+    }
+
+    .logo {
+      width: 3rem;
+      height: 3rem;
+      margin: 0 auto 1rem;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      margin: 0 0 0.4rem;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0 0 1.35rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    a {
+      display: inline-block;
+      padding: 0.7rem 1.35rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.18s ease;
+    }
+
+    a:hover,
+    a:focus-visible { background: var(--accent-dark); }
+
+    code {
+      font-family: "Cascadia Code", Consolas, monospace;
+      font-size: 0.86em;
+      padding: 0.1rem 0.35rem;
+      border-radius: 5px;
+      background: #f0f4fa;
+      color: var(--text);
+    }
+
+    .note {
+      margin-top: 1.4rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
-
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="StudyFlow home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
-        </span>
-        <span class="brand-text">StudyFlow</span>
-      </a>
-
-      <nav class="nav" id="primaryNav" aria-label="Primary navigation">
-        <ul class="nav-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="tasks.html">Study Tasks</a></li>
-          <li><a href="blog.html">Troubleshooting Blog</a></li>
-          <li><a href="ethics.html">Ethics &amp; Privacy</a></li>
-        </ul>
-      </nav>
-
-      <a class="btn btn-primary btn-sm" href="tasks.html">Open planner</a>
-
-      <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
-    </div>
-  </header>
-
-  <main id="main">
-    <!-- ================= HERO ================= -->
-    <section class="hero" aria-labelledby="appTitle">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow">Assignment 3 · Study task management web app</p>
-          <h1 id="appTitle" class="hero-title">StudyFlow — My Study Task Manager</h1>
-          <p class="hero-sub">
-            Every assignment, revision task, quiz and project deadline in one central place.
-            Create, update and track your study tasks — and stop losing marks to forgotten due dates.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="tasks.html">Manage my tasks</a>
-            <a class="btn btn-ghost" href="#about-app">How it works</a>
-          </div>
-        </div>
-
-        <!-- Image gallery: three study-related images + cycle button -->
-        <figure class="gallery" id="gallery" aria-label="Gallery of study related images">
-          <div class="gallery-stage">
-            <img class="slide is-active" src="images/study-desk.svg" alt="Illustration of a tidy study desk with a laptop, a coffee cup and a small plant" />
-            <img class="slide" src="images/study-checklist.svg" alt="Illustration of a clipboard checklist with three completed ticks and one pending item" />
-            <img class="slide" src="images/study-graduation.svg" alt="Illustration of a stack of books topped with a graduation cap" />
-          </div>
-
-          <figcaption class="gallery-bar">
-            <button class="icon-btn" id="prevSlide" type="button" aria-label="Show previous image">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
-            </button>
-
-            <div class="gallery-meta">
-              <span id="slideCounter" aria-live="polite">1 / 3</span>
-              <div class="dots" role="group" aria-label="Choose image">
-                <button class="dot is-active" type="button" aria-label="Image 1: study desk"></button>
-                <button class="dot" type="button" aria-label="Image 2: study checklist"></button>
-                <button class="dot" type="button" aria-label="Image 3: graduation cap"></button>
-              </div>
-            </div>
-
-            <button class="icon-btn" id="nextSlide" type="button" aria-label="Show next image">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-            </button>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ================= ABOUT THE APP ================= -->
-    <section class="section section-alt" id="about-app" aria-labelledby="aboutAppTitle">
-      <div class="container">
-        <p class="section-kicker">About the app</p>
-        <h2 class="section-title" id="aboutAppTitle">One place for every academic responsibility</h2>
-
-        <div class="split">
-          <div>
-            <p class="lede">
-              StudyFlow exists because handwritten notes and messy spreadsheets stop working the
-              moment three assessments are due in the same week. It gives students a structured,
-              single location to organise and track all study tasks.
-            </p>
-            <p class="muted-text">
-              Each task records a title, the course code and name it belongs to, a due date, a
-              description and any extra notes. Tasks are listed in due-date order with a live
-              countdown, so the next deadline is always obvious — and overdue work is impossible
-              to miss.
-            </p>
-            <p class="muted-text">
-              The app runs entirely in your browser: tasks are saved locally on your own device,
-              so nothing about your studies is uploaded anywhere.
-            </p>
-          </div>
-
-          <ul class="feature-list">
-            <li>
-              <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
-              <div><h3>Create tasks</h3><p>Record assignments, revision, quizzes and projects with course details and due dates.</p></div>
-            </li>
-            <li>
-              <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4"/></svg></span>
-              <div><h3>Update &amp; delete</h3><p>Plans change — edit any detail, or remove a task after confirming the deletion.</p></div>
-            </li>
-            <li>
-              <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9h17M8 2.8v3.4M16 2.8v3.4"/></svg></span>
-              <div><h3>See what's next</h3><p>All tasks in one organised table, sorted by due date with a countdown for each.</p></div>
-            </li>
-            <li>
-              <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></span>
-              <div><h3>Validated input</h3><p>Required fields and past dates are rejected with clear error messages — no broken data.</p></div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= ABOUT ME ================= -->
-    <section class="section" id="about-me" aria-labelledby="aboutMeTitle">
-      <div class="container split split--reverse">
-        <aside class="about-card" aria-label="Profile summary">
-          <div class="avatar" aria-hidden="true">SC</div>
-          <h3>Shuhan Chen</h3>
-          <p class="muted-text small">First-year Information Technology student</p>
-          <ul class="chip-list">
-            <li class="chip">HTML</li>
-            <li class="chip">CSS</li>
-            <li class="chip">JavaScript</li>
-            <li class="chip">Git &amp; VS Code</li>
-          </ul>
-        </aside>
-
-        <div>
-          <p class="section-kicker">About me</p>
-          <h2 class="section-title" id="aboutMeTitle">Hi, I'm Shuhan — and I built this because I needed it.</h2>
-          <p class="muted-text">
-            I'm a first-year IT student taking courses such as
-            <strong>INFO1012 Information Technology Systems</strong>,
-            <strong>INFO1015 Programming Principles</strong> and
-            <strong>INFO1018 Web &amp; Data Technologies</strong>.
-            My academic interests sit mostly with the web: how interfaces are structured,
-            styled and made interactive.
-          </p>
-          <p class="muted-text">
-            My old study system was a paper diary plus three half-finished spreadsheets — fine in
-            week one, hopeless by mid-semester. Now I plan with a weekly time-block method:
-            every Sunday I list the week's tasks, estimate how long each needs, and block the
-            hardest one into a morning slot. StudyFlow is the digital version of that habit:
-            capture the task when it's announced, watch the countdown, finish it before it turns red.
-          </p>
-          <a class="text-link" href="tasks.html">Try the planner <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
+  <main>
+    <div class="logo" aria-hidden="true">SF</div>
+    <h1>StudyFlow</h1>
+    <p>My Study Task Manager — loading the home page…</p>
+    <a href="html/index.html">Open StudyFlow</a>
+    <p class="note">
+      This is only the repository entry point. All application pages live in the
+      <code>html/</code> folder (<code>index.html</code>, <code>tasks.html</code>,
+      <code>blog.html</code>, <code>ethics.html</code>), with styles in <code>css/</code>
+      and scripts in <code>js/</code>.
+    </p>
   </main>
-
-  <div class="clock-bar">
-    <div class="container">
-      <span aria-hidden="true">🕒</span> Current date and time:
-      <time id="clock">Loading…</time>
-    </div>
-  </div>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p class="footer-copy">© <span id="year">2026</span> Shuhan Chen · StudyFlow — Assignment 3.1, built with HTML, CSS &amp; JavaScript.</p>
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="index.html">Home</a>
-        <a href="tasks.html">Study Tasks</a>
-        <a href="blog.html">Troubleshooting Blog</a>
-        <a href="ethics.html">Ethics &amp; Privacy</a>
-      </nav>
-    </div>
-  </footer>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="js/main.js"></script>
-  <script src="js/gallery.js"></script>
 </body>
 </html>

@@ -40,35 +40,42 @@ leaves the user's device.
 
 | Page | File | Purpose |
 |------|------|---------|
-| Home (main) | `index.html` | App overview, image gallery with a cycle button, "About the App" and "About Me" sections |
-| Study Tasks | `tasks.html` | Login + create / update / delete / view tasks with validation and clock |
-| Project plan & Troubleshooting Blog | `blog.html` | 3-week sprint plan table and two documented, resolved errors |
-| Ethics & Privacy | `ethics.html` | Reflection on privacy, data minimisation and ethical design |
+| Home (main) | `html/index.html` | App overview, image gallery with a cycle button, "About the App" and "About Me" sections |
+| Study Tasks | `html/tasks.html` | Login + create / update / delete / view tasks with validation and clock |
+| Project plan & Troubleshooting Blog | `html/blog.html` | 3-week sprint plan table and two documented, resolved errors |
+| Ethics & Privacy | `html/ethics.html` | Reflection on privacy, data minimisation and ethical design |
 
 ## Repository structure
 
 ```
 study-planner/
-├── index.html          # Main home page
-├── tasks.html          # Study task management (login + CRUD)
-├── blog.html           # Project plan & troubleshooting blog
-├── ethics.html         # Ethics & privacy reflection
-├── README.md           # This file
-├── LICENSE             # MIT License
-├── .gitignore
-├── css/
+├── index.html          # Repository entry point (redirects to html/index.html)
+├── html/               # ---- HTML: all application pages ----
+│   ├── index.html      # Main home page
+│   ├── tasks.html      # Study task management (login + CRUD)
+│   ├── blog.html       # Project plan & troubleshooting blog
+│   └── ethics.html     # Ethics & privacy reflection
+├── css/                # ---- CSS ----
 │   └── style.css       # All styling (design tokens, layout, components)
-├── js/
+├── js/                 # ---- JavaScript ----
 │   ├── main.js         # Shared: nav, clock, toast
 │   ├── gallery.js      # Home page image cycler
 │   └── tasks.js        # Login, CRUD, validation, storage
-└── images/
-    ├── favicon.svg
-    ├── study-desk.svg        # Gallery image 1
-    ├── study-checklist.svg   # Gallery image 2
-    ├── study-graduation.svg  # Gallery image 3
-    └── shot-*.svg            # Screenshots used in the troubleshooting blog
+├── images/             # ---- Assets ----
+│   ├── favicon.svg
+│   ├── study-desk.svg        # Gallery image 1
+│   ├── study-checklist.svg   # Gallery image 2
+│   ├── study-graduation.svg  # Gallery image 3
+│   └── shot-*.svg            # Screenshots used in the troubleshooting blog
+├── README.md           # This file
+├── repository-url.txt  # Submitted GitHub repository URL
+├── LICENSE             # MIT License
+└── .gitignore
 ```
+
+HTML, CSS and JavaScript each live in their own folder. Pages reference the shared assets
+with relative paths (`../css/style.css`, `../js/main.js`, `../images/…`), so the site works
+both from the local file system and from GitHub Pages.
 
 ## How to install and run
 
@@ -77,9 +84,10 @@ No build tools or dependencies are required.
 1. **Clone or download** the repository:
    - `git clone <repository-url>` — or download the ZIP and extract it.
 2. **Open the site** — either:
-   - double-click `index.html` to open it directly in your browser, **or**
+   - double-click `html/index.html` to open it directly in your browser (the root
+     `index.html` simply redirects there), **or**
    - open the folder in **VS Code** and use the *Live Server* extension
-     (right-click `index.html` → “Open with Live Server”).
+     (right-click `html/index.html` → “Open with Live Server”).
 3. Sign in on the **Study Tasks** page with the demo credentials below and start adding tasks.
 
 Recommended browsers: Chrome, Edge or Firefox (current versions).

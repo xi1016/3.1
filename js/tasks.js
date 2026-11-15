@@ -128,7 +128,14 @@
     var msgEl = $(id + "Error");
     var inputEl = $(id);
     if (msgEl) msgEl.textContent = message;
-    if (inputEl) inputEl.classList.toggle("is-invalid", message !== "");
+    if (!inputEl) return;
+    inputEl.classList.toggle("is-invalid", message !== "");
+    // Keep assistive technology in sync with the visual error state.
+    if (message !== "") {
+      inputEl.setAttribute("aria-invalid", "true");
+    } else {
+      inputEl.removeAttribute("aria-invalid");
+    }
   }
 
   /* Date check — compares date-to-date at local midnight.
