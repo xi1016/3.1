@@ -1,7 +1,7 @@
 /* ==========================================================================
    StudyFlow — home page image gallery
    Cycles through the three study images (arrows, dots, keyboard).
-   Author: Shuhan Chen · Assignment 3.1
+   Author: Shuhan Chen (陈姝涵) · Assignment 3.1
    ========================================================================== */
 "use strict";
 

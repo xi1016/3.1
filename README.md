@@ -135,7 +135,7 @@ with countdown badges and Edit / Delete actions. Delete always asks for confirma
 
 ## Credits
 
-- **Author:** Shuhan Chen — Assignment 3.1, Web Page Development
+- **Author:** Shuhan Chen (陈姝涵) — Assignment 3.1, Web Page Development
 - **Fonts:** [Sora](https://fonts.google.com/specimen/Sora) and
   [Inter](https://fonts.google.com/specimen/Inter) via Google Fonts (OFL licence)
 - **Reference documentation:** [MDN Web Docs](https://developer.mozilla.org/) — used for

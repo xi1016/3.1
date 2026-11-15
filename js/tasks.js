@@ -1,7 +1,7 @@
 /* ==========================================================================
    StudyFlow — study task management (tasks.html)
    Login gate · CRUD · validation · delete confirmation · localStorage
-   Author: Shuhan Chen · Assignment 3.1
+   Author: Shuhan Chen (陈姝涵) · Assignment 3.1
    ========================================================================== */
 "use strict";
 

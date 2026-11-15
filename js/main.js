@@ -1,7 +1,7 @@
 /* ==========================================================================
    StudyFlow — shared site behaviour
    Loads on every page: mobile navigation, live clock, footer year, toast.
-   Author: Shuhan Chen · Assignment 3.1
+   Author: Shuhan Chen (陈姝涵) · Assignment 3.1
    ========================================================================== */
 "use strict";
 
